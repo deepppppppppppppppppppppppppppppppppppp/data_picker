@@ -1,0 +1,384 @@
+@blue:#2db7f5;
+@gray:#666;
+.transition(@e){
+  -webkit-transition: @e;
+  -moz-transition: @e;
+  -o-transition: @e;
+  transition: @e;
+}
+.transform(@e){
+  -webkit-transform: @e;
+  -moz-transform: @e;
+  -o-transform: @e;
+  transform: @e;
+}
+.linear-gradient(@e){
+
+}
+.cal-container {
+  position: absolute;
+  width: 261px;
+//  margin: 0 auto;
+//  margin-top: 50px;
+  top:0px;
+  left: 0px;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  overflow-x: hidden;
+  background: #fff;
+  .cal-head{
+    position: relative;
+    width: 100%;
+    padding: 10px 0;
+    .cal-head-content{
+      &:after{
+        content: '';
+        display: block;
+        clear: both;
+      }
+//      text-align: center;
+      .year-add-plus{
+        position: relative;
+        width: 20px;
+        top:5px;
+        left: 10px;
+        >div{
+          width: 100%;
+          cursor: pointer;
+        }
+        .year-add-box{
+          @media screen and(min-width: 901px){
+            &:hover:before{
+              border-bottom:6px solid lighten(@blue,10%);
+            }
+          }
+          @media screen and(max-width: 900px){
+            &:active:before{
+              border-bottom:6px solid lighten(@blue,10%);
+            }
+          }
+
+        }
+        .year-plus-box{
+          margin-top: 5px;
+          @media screen and(min-width: 901px){
+            &:hover:before{
+              border-top:6px solid lighten(@blue,10%);
+            }
+          }
+          @media screen and(max-width: 900px){
+            &:active:before{
+              border-top:6px solid lighten(@blue,10%);
+            }
+          }
+        }
+        .year-add-box:before,.year-plus-box:before{
+          content: '';
+          display: block;
+          width: 0;
+          height: 0;
+          border-right:8px solid transparent;
+          border-left:8px solid transparent;
+          .transition(0.2s ease-out);
+        }
+        .year-add-box:before{
+          border-top:0;
+          border-bottom:6px solid darken(#d9d9d9,10%);
+        }
+        .year-plus-box:before{
+          border-bottom:0;
+          border-top:6px solid darken(#d9d9d9,10%);
+        }
+      }
+      .year-box .year-content,.month-box .month-content{
+        padding-left: 5px;
+        padding-right: 27px;
+        overflow: hidden;
+      }
+      .year-box,.month-box{
+        text-align: left;
+        position: relative;
+        float: right;
+//        width: 75px;
+        font-size: 13px;
+        color:@gray;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: 0.2s ease-out;
+        margin-right: 5px;
+        line-height: 25px;
+        min-height: 27px;
+        &:hover{
+          border: 1px solid @blue;
+          ul{
+
+          }
+        }
+
+        ul{
+          visibility: hidden;
+          height:0;
+          opacity: 0;
+          position: absolute;
+          list-style: none;
+          padding: 0;
+          width: 100px;
+          background: #fff;
+          border: 1px solid #d9d9d9;
+          top: 19px;
+          left: 0;
+          border-radius: 4px;
+          max-height: 250px;
+          overflow: auto;
+          .transition(0.2s ease-out);
+          li{
+            padding: 4px 10px;
+            margin: 0;
+            &:hover{
+              background: lighten(@blue, 40%);
+            }
+          }
+        }
+        /*选择框下拉出现*/
+        ul.select-box-show{
+//          z-index:1000;
+          opacity: 1;
+          visibility: visible;
+          height:250px;
+        }
+      }
+      .year-box.date-selected,.month-box.date-selected{
+        border: 1px solid @blue;
+      }
+      .select-arrow{
+        position: absolute;
+        top:50%;
+        right: 10px;
+        display:block;
+        font-size: 13px;
+        margin-top: -15px;
+        .transform(rotate(-90deg));
+        .transition(0.2s ease-out);
+      }
+      .select-arrow.arrow-drop-down{
+        .transform(rotate(90deg));
+      }
+      .mode-box{
+        float: right;
+        width: 65px;
+        margin-right: 13px;
+        >span{
+          position: relative;
+          display: block;
+          float: left;
+          text-align: center;
+          border: 1px solid #d9d9d9;
+          border-radius: 50%;
+          width: 27px;
+          height: 27px;
+          margin-left: 5px;
+          box-sizing: border-box;
+          .transition(0.2s ease-out);
+          .mode-radio{
+            position: absolute;
+            left: -5px;
+            top: -4px;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+          }
+          &:hover{
+            border: 1px solid @blue;
+          }
+          >label{
+            display: block;
+            line-height: 27px;
+            font-size: 13px;
+            color:@gray;
+            cursor: pointer;
+          }
+        }
+        /*模式选中*/
+        span.mode-selected{
+          border: 1px solid @blue;
+          label{
+            color: @blue;
+          }
+        }
+      }
+    }
+  }
+
+  .cal-box {
+    margin-left: 0px;
+    box-sizing: border-box;
+    width: 200%;
+    padding: 8px;
+    border-top: 1px solid #d9d9d9;
+    .transition(0.2s ease-out);
+    table {
+      display: inline-block;
+      border-collapse: collapse;
+      thead td, tbody td {
+        width: 35px;
+        height: 35px;
+        margin: 0;
+        padding: 0px;
+        line-height: 35px;
+        text-align: center;
+        font-family: Arial;
+        font-size: 14px;
+      }
+      thead td{
+        color: @gray;
+      }
+      thead td.sun, thead td.sta {
+        color: @blue;
+      }
+      tbody {
+//        border-left: 1px solid #eee;
+//        border-top: 1px solid #eee;
+        td {
+//          border-bottom: 1px solid #eee;
+//          border-right: 1px solid #eee;
+          color: #666;
+          cursor: pointer;
+          &:hover {
+            background: lighten(@blue, 40%);
+          }
+        }
+        td.today{
+          background: @gray;
+          color: #fff;
+        }
+        td.day-choosed {
+          background: @blue;
+          color: #fff;
+        }
+        td.month-pre, td.month-next {
+          color: #ccc;
+        }
+      }
+    }
+    table.cal-year-table{
+      tbody td{
+        box-sizing: border-box;
+        font-size: 12px;
+        width: 83px;
+        height: 60px;
+      }
+      tbody td.month-choosed{
+        background: @blue;
+        color: #fff;
+      }
+    }
+  }
+  .cal-box.mode-year{
+    margin-left: -254px;
+  }
+  .time-picker-box{
+    position: relative;
+    margin-top: 10px;
+    height: 80px;
+    .hour-picker,.minute-picker,.second-picker{
+      position: relative;
+      border-radius: 5px;
+      width: 112px;
+      height: 7px;
+      background: #fff;
+      margin-bottom: 15px;
+      margin-left: 25px;
+      border: 1px solid #d9d9d9;
+      cursor: pointer;
+      .hour-picker-btn{
+
+      }
+      /*滚动按钮*/
+      .picker-btn{
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid darken(#d9d9d9,20%);
+        top: 50%;
+        margin-top: -7px;
+        left: 0px;
+        cursor: pointer;
+        /*时间值*/
+        .time-value{
+          opacity: 0;
+          visibility: hidden;
+          position: absolute;
+          display: block;
+          padding: 0 2px;
+          left:-3px;
+          top: -25px;
+          width: 15px;
+          height: 15px;
+          font-size: 13px;
+          border: 1px solid @blue;
+          text-align: center;
+          line-height: 15px;
+          color: @blue;
+          background: #fff;
+          .transition(0.2s ease-out);
+        }
+        .time-value.time-show{
+          visibility:visible;
+          opacity: 1;
+        }
+        .time-value:after{
+          content: '';
+          display: block;
+          position: absolute;
+          top: 15px;
+          left: 50%;
+          margin-left: -10px;
+          width:0;
+          height: 0;
+          border-top:6px solid @blue;
+          border-bottom:6px solid transparent;
+          border-left:10px solid transparent;
+          border-right:10px solid transparent;
+        }
+
+        &:hover{
+          border: 1px solid @blue;
+          .time-value{
+            opacity: 1;
+            visibility:visible;
+          }
+        }
+      }
+    }
+    .time-picker-name{
+      position: absolute;
+      top: -4px;
+      left: 125px;
+      font-size: 13px;
+      color: @gray;
+    }
+    .time-now-box{
+      position: absolute;
+      top:0px;
+      width: 50px;
+      height: 50px;
+      border: 1px solid lighten(@gray,30%);
+      color: @gray;
+      border-radius: 50%;
+      left:186px;
+      letter-spacing: 3px;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+      .transition(0.1s ease-out);
+      &:hover{
+        border: 1px solid @blue;
+        color: @blue;
+      }
+    }
+  }
+}
