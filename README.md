@@ -36,4 +36,4 @@
 
 \<input class="g-date-picker g-day-picker" data-fomat="yy/mm/dd"/><br/>
 
-![](https://raw.githubusercontent.com/youngdro/G_datePicker/master/img/g-date-picker2.png "日期选择器")
+![](https://raw.githubusercontent.com/youngdro/G_datePicker/master/img/g-day-picker2.png "日期选择器")
