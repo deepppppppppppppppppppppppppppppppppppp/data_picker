@@ -1,6 +1,4 @@
-/**
- * Created by Administrator on 2016/7/22.
- */
+
 
 module.exports = function (DatePicker) {
     var tpl = require('raw!./tpl.timepicker.html');
@@ -85,16 +83,6 @@ module.exports = function (DatePicker) {
         setTimeout(function(){DatePicker.$html.find(".time-value").removeClass("time-show");},1000);
         hour_picker.trigger("timechangetonow");
     });
-    //监听时刻改变事件
-    //DatePicker.$html.on("timechange",">div",function(e){
-    //    var target = $(e.target);
-    //    var time_picker_box = target.parent();
-    //    var hour_time = time_picker_box.find(".hour-picker").data("time_value");
-    //    var minute_time = time_picker_box.find(".minute-picker").data("time_value");
-    //    var second_time = time_picker_box.find(".second-picker").data("time_value");
-    //    time_picker_value = hour_time+":"+minute_time+":"+second_time;
-    //});
-
 };
 
 //获取元素距离浏览器窗口周边的距离
