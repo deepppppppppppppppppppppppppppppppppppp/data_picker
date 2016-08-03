@@ -145,15 +145,12 @@
 
             //获取元素距离浏览器窗口周边的距离
             function getRect(elements) {
-                var rect = elements.getBoundingClientRect();
-                var clientTop = document.documentElement.clientTop;
-                var clientLeft = document.documentElement.clientLeft;
-                return { // 兼容ie多出的两个px
-                    top: rect.top - clientTop, // 距离顶部的位置
-                    bottom: rect.bottom - clientTop, // 距离顶部加上元素本身的高度就等于bottom的位置
-                    left: rect.left - clientLeft, // 距离左边的位置
-                    right: rect.right - clientLeft // 距离右边的位置就是 距离左边的位置加上元素本身的宽度
-                };
+                console.log($(elements).offset().top);
+                console.log($(elements).offset().left);
+                return {
+                    top:$(elements).offset().top,
+                    left:$(elements).offset().left
+                }
             }
 
             var G_datepicker = {
@@ -361,7 +358,7 @@
                 G_datepicker.cal.fadeIn();
                 G_datepicker.cal.find(".picker-hidden").removeClass("picker-hidden");
                 var rect = getRect(e.target);
-                G_datepicker.cal.css("top", (rect.top + target.height() + 10) + "px");
+                G_datepicker.cal.css("top", (rect.top + target.height() + 15) + "px");
                 G_datepicker.cal.css("left", rect.left + "px");
                 G_datepicker.input_target = target;
                 G_datepicker.picker = "date";

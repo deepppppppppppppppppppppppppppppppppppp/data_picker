@@ -1,5 +1,3 @@
-
-
 module.exports = function (DatePicker) {
     var tpl = require('raw!./tpl.timepicker.html');
     var _this = this;
